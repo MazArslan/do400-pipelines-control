@@ -6,6 +6,6 @@ node('nodejs') {
     sh 'node ./backend/test.js'
   }
   stage('frontend test') {
-    sh 'node ./frontend/test'
+    sh 'node ./frontend/test.js'
   }
 }
