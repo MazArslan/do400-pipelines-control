@@ -5,15 +5,18 @@ pipeline {
     }
   }
   stages {
-    stage('backend tests') {
-      steps {
-        sh 'node ./backend/test.js'
+    stage('run tests') {
+      paralell {
+        stage('backend test') {
+          steps {
+            sh 'node ./backend/test.js'
+          }
+        }
+        stage('frontend test') {
+          steps{
+            sh 'node ./frontend/test.js'
+          }
+        }
       }
-    }
-    stage('frontend test') {
-      steps{
-        sh 'node./frontend/test.js'
-      }
-    }
   }
 }
