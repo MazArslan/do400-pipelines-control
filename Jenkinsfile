@@ -4,6 +4,9 @@ pipeline {
       label 'nodejs'
     }
   }
+  parameters {
+    booleanParam(name: "RUN_FRONTEND_TEST", defaultValue: true)
+  }
   stages {
     stage('run tests') {
       parallel {
@@ -13,6 +16,7 @@ pipeline {
           }
         }
         stage('frontend test') {
+          when { expression {params.RUN_FRONTEND_TEST } }
           steps{
             sh 'node ./frontend/test.js'
           }
